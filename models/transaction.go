@@ -5,12 +5,13 @@ import (
 	"encoding/hex"
 	"time"
 )
+
 type Transaction struct {
-	timestamp string 
-	transaction_id string
-	sender_address string
-	amount int
-	receiver_address string
+	timestamp       string
+	transactionID   string
+	senderAddress   string
+	amount          int
+	receiverAddress string
 }
 
 func (t *Transaction) GetTransactionId() string {
@@ -18,7 +19,7 @@ func (t *Transaction) GetTransactionId() string {
 }
 
 func NewTransaction(senderAddress string, amount int, receiverAddress string) Transaction {
-	t:=new(Transaction)
+	t := new(Transaction)
 	t.timestamp = string(time.Now().Unix())
 	t.sender_address = senderAddress
 	t.amount = amount
@@ -27,8 +28,8 @@ func NewTransaction(senderAddress string, amount int, receiverAddress string) Tr
 	return *t
 }
 
-func (t *Transaction)hashTransaction() string {
-	concat := t.sender_address + string(t.amount) + t.receiver_address +  t.timestamp
+func (t *Transaction) hashTransaction() string {
+	concat := t.sender_address + string(t.amount) + t.receiver_address + t.timestamp
 	hash := sha256.New()
 	hash.Write([]byte(concat))
 	transactionHash := hex.EncodeToString(hash.Sum(nil))
