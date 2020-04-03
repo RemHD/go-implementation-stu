@@ -7,11 +7,11 @@ import (
 )
 
 type Transaction struct {
-	timestamp       string
-	transactionID   string
-	senderAddress   string
-	amount          int
-	receiverAddress string
+	timestamp        string
+	transaction_id   string
+	sender_address   string
+	amount           int
+	receiver_address string
 }
 
 func (t *Transaction) GetTransactionId() string {
